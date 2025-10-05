@@ -14,7 +14,7 @@ public class Consumo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+//coment
     @Column(nullable = false)
     private LocalDate data;
 
