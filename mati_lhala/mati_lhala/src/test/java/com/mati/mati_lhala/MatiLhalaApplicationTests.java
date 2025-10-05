@@ -1,10 +1,10 @@
-package com.Sistema.de.Gestao;
+package com.mati.mati_lhala;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SistemaDeGestaDeAcessoAoFuroApplicationTests {
+class MatiLhalaApplicationTests {
 
 	@Test
 	void contextLoads() {
