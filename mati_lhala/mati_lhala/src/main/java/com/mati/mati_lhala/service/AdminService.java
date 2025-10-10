@@ -1,6 +1,5 @@
 package com.mati.mati_lhala.service;
 
-
 import com.mati.mati_lhala.model.Admin;
 import com.mati.mati_lhala.repository.AdminRepository;
 import lombok.RequiredArgsConstructor;
@@ -55,6 +54,11 @@ public class AdminService {
 
     public Optional<Admin> findByLogin(String login) {
         return adminRepository.findByLogin(login);
+    }
+
+    // CORREÇÃO: Adicionar método para buscar por email
+    public Optional<Admin> findByEmail(String email) {
+        return adminRepository.findByEmail(email);
     }
 
     public boolean autenticar(String login, String senha) {

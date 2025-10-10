@@ -1,6 +1,7 @@
 package com.mati.mati_lhala.controller;
 
 
+import com.mati.mati_lhala.dto.LoginRequest;
 import com.mati.mati_lhala.model.Utente;
 import com.mati.mati_lhala.service.UtenteService;
 import lombok.RequiredArgsConstructor;
@@ -50,8 +51,9 @@ public class UtenteController {
     }
 
     @PostMapping("/autenticar")
-    public ResponseEntity<Boolean> autenticar(@RequestParam String login, @RequestParam String senha) {
-        boolean autenticado = utenteService.autenticar(login, senha);
+    public ResponseEntity<Boolean> autenticar(@RequestBody LoginRequest loginRequest) {
+        System.out.println("Tentativa de login: " + loginRequest.getLogin());
+        boolean autenticado = utenteService.autenticar(loginRequest.getLogin(), loginRequest.getSenha());
         return ResponseEntity.ok(autenticado);
     }
 }

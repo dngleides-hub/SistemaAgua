@@ -1,6 +1,5 @@
 package com.mati.mati_lhala.controller;
 
-
 import com.mati.mati_lhala.model.Admin;
 import com.mati.mati_lhala.service.AdminService;
 import lombok.RequiredArgsConstructor;
@@ -60,12 +59,6 @@ public class AdminController {
             return ResponseEntity.badRequest().body("Login já está em uso por outro admin");
         }
 
-        // Verificar se outro admin já usa o email
-//        Optional<Admin> adminByEmail = adminService.findByEmail(admin.getEmail());
-//        if (adminByEmail.isPresent() && !adminByEmail.get().getId().equals(id)) {
-//            return ResponseEntity.badRequest().body("Email já está em uso por outro admin");
-//        }
-
         admin.setId(id);
         Admin updatedAdmin = adminService.save(admin);
         return ResponseEntity.ok(updatedAdmin);
@@ -98,9 +91,10 @@ public class AdminController {
         return ResponseEntity.ok(activatedAdmin);
     }
 
+    // CORREÇÃO: Mudar para @RequestBody para evitar Bad Request
     @PostMapping("/autenticar")
-    public ResponseEntity<Boolean> autenticar(@RequestParam String login, @RequestParam String senha) {
-        boolean autenticado = adminService.autenticar(login, senha);
+    public ResponseEntity<Boolean> autenticar(@RequestBody LoginRequest loginRequest) {
+        boolean autenticado = adminService.autenticar(loginRequest.getLogin(), loginRequest.getSenha());
         return ResponseEntity.ok(autenticado);
     }
 
@@ -109,5 +103,28 @@ public class AdminController {
         return adminService.findByLogin(login)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    // Classe DTO interna para o login (ou crie uma classe separada)
+    public static class LoginRequest {
+        private String login;
+        private String senha;
+
+        // Getters e Setters
+        public String getLogin() {
+            return login;
+        }
+
+        public void setLogin(String login) {
+            this.login = login;
+        }
+
+        public String getSenha() {
+            return senha;
+        }
+
+        public void setSenha(String senha) {
+            this.senha = senha;
+        }
     }
 }
