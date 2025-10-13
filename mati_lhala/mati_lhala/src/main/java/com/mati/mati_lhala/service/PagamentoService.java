@@ -52,7 +52,7 @@ public class PagamentoService {
     }
 
     public boolean validarPagamento(Pagamento pagamento) {
-        return pagamento.getValor() > 0 &&
+        return
                 pagamento.getMetodo() != null &&
                 !pagamento.getMetodo().isEmpty();
     }

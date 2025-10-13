@@ -1,0 +1,11 @@
+mati-lhala-frontend/
+├── node_modules/
+├── public/
+├── src/
+│   ├── App.jsx          ← Cole o código aqui
+│   ├── index.css        ← Configure Tailwind
+│   └── main.jsx
+├── index.html
+├── package.json
+├── tailwind.config.js
+└── vite.config.js
